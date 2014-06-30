@@ -1,63 +1,28 @@
-
 class DogHTMLPage
-  def title(dogs)
-    template = <<-TEMPLATE
-      <% length_array = [] %>
-      <% dogs.each do |dogs| %>
-      <% length_array.push %>
-      <%=length_array %>
-    TEMPLATE
-    options_hash = {:locals => [{:number_dogs => dog}]}
-    erb template, options_hash
 
-
+  def initialize(dogs_array)
+    @dogs_array = dogs_array
+    @dog_length = dogs_array.length
   end
 
+  def title
+    "<h1>There are #{no_dogs} dogs</h1>"
+  end
 
+  def no_dogs
+    if @dog_length == 0
+        "no"
+    else
+      @dog_length
+    end
+  end
+
+  def list
+    name = @dogs_array.collect {|dog| dog[:name]}
+  if @dogs_array != []
+    "<ul><li>#{name[0]}</li><li>#{name[1]}</li><li>#{name[2]}</li><li>#{name[3]}</li></ul>"
+  else
+    ""
+  end
+  end
 end
-
-
-
-
-
-
-#
-#
-#   name_array = []
-#   dogs.each do |dogs|
-#     name_array.push if dogs.has_value?(:name)
-#     puts name_array
-#   end
-# end
-# # number_dogs = []
-# # dog.each do |dog|
-# # number_dogs.push(dog)
-# # end
-# # puts number_dogs
-# # # template = "<h1><there are<%= number_dogs.length %><h1/>"
-# # # options_hash = {:locals => [{:number_dogs => dog}]}
-# # # erb template, options_hash
-
-
-#
-# def title(dogs)
-#   template = <<-TEMPLATE
-#     <ul>
-#     <% length_dog.each do |dogs| %>
-#       <li><%= dogs[:name] %></li>
-#       <% end %>
-#     </ul>
-#   TEMPLATE
-#   option_hash = {:locals => {:length_dog => dogs}}
-#   erb template, option_hash
-# end
-
-# template = <<-TEMPLATE
-#    <h1>
-#       <% number_dogs.each do |dogs|
-#        <% = dogs.count %>
-#       <% end %>
-#     </h1>
-# TEMPLATE
-# options_hash = {:locals => {:number_dogs => dogs}}
-# erb template, options_hash
